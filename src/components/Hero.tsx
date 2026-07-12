@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { siteConfig } from "@/lib/data";
+import { SparkleIcon } from "./Icons";
 
 const EASE = [0.65, 0, 0.35, 1] as const;
 
@@ -45,7 +46,8 @@ export default function Hero() {
             className="order-2 max-w-[240px] text-[11px] font-semibold uppercase leading-[1.9] tracking-[0.18em] text-foreground/80 max-md:mx-auto max-md:text-center md:order-1 md:justify-self-start"
           >
             A fullstack developer passionate about crafting bold and memorable
-            products 😎
+            Software Solutions{" "}
+            <SparkleIcon className="inline-block h-auto w-[1.1em] align-[-0.2em]" />
           </motion.p>
 
           {/* center — avatar with gradient glow, floating like the 3D head */}

@@ -1,10 +1,68 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import { projects } from "@/lib/data";
 import { Reveal } from "./ScrollFx";
+
+/* Big magnetic CTA to the archive — glows, breathes, and leans toward the cursor. */
+function ArchiveCta() {
+  const ref = useRef<HTMLDivElement>(null);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const x = useSpring(mx, { stiffness: 160, damping: 16 });
+  const y = useSpring(my, { stiffness: 160, damping: 16 });
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    mx.set((e.clientX - (rect.left + rect.width / 2)) * 0.3);
+    my.set((e.clientY - (rect.top + rect.height / 2)) * 0.3);
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={() => {
+        mx.set(0);
+        my.set(0);
+      }}
+      className="inline-block p-8"
+    >
+      <motion.div style={{ x, y }} className="relative">
+        {/* breathing glow behind the pill */}
+        <motion.div
+          aria-hidden
+          animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.08, 1] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+          className="grad-bg absolute -inset-2 rounded-full blur-xl"
+        />
+        <Link
+          href="/projects"
+          className="grad-pill relative inline-flex items-center gap-3 rounded-full px-10 py-5 text-[12px] font-bold uppercase tracking-[0.22em] text-white transition-transform duration-300 hover:scale-[1.04] md:px-12 md:text-[13px]"
+        >
+          Explore the full archive
+          <motion.span
+            aria-hidden
+            animate={{ x: [0, 7, 0] }}
+            transition={{ duration: 1.3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            →
+          </motion.span>
+        </Link>
+      </motion.div>
+    </div>
+  );
+}
 
 /* Outlined cards pin below the header and stack over each other as you scroll,
  * each led by a huge number like the reference's 01 / 02 / 03 client cards. */
@@ -32,36 +90,51 @@ function StackCard({
       >
         {/* header row — number, name, live pill */}
         <div className="flex items-center justify-between gap-4 border-b border-line px-6 py-5 md:px-9">
-          <div className="flex items-baseline gap-5">
-            <span className="display text-4xl leading-none md:text-6xl">
+          <div className="flex items-center gap-5">
+            <span className="display text-4xl leading-[0.8] md:text-6xl">
               {project.index}
             </span>
-            <div>
-              <p className="label">Project · {project.year}</p>
-              <h3 className="display mt-1 text-xl md:text-3xl">{project.title}</h3>
+            <div className="flex flex-col justify-center">
+              <p className="label leading-none">Project · {project.year}</p>
+              <h3 className="display mt-1.5 text-xl leading-none md:text-3xl">
+                {project.title}
+              </h3>
             </div>
           </div>
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pill-outline shrink-0 px-6 py-3 text-[10px] font-bold uppercase tracking-[0.22em] md:text-[11px]"
-          >
-            Live project
-          </a>
+          <div className="flex shrink-0 flex-wrap items-center justify-end gap-3">
+            {project.caseStudy && (
+              <Link
+                href={project.caseStudy}
+                className="grad-pill rounded-full px-6 py-3 text-[10px] font-bold uppercase tracking-[0.22em] text-white md:text-[11px]"
+              >
+                Case study
+              </Link>
+            )}
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill-outline px-6 py-3 text-[10px] font-bold uppercase tracking-[0.22em] md:text-[11px]"
+              >
+                Live project
+              </a>
+            )}
+          </div>
         </div>
 
         <div className="grid gap-6 p-6 md:grid-cols-[1.6fr_1fr] md:p-9">
           <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={project.link || project.caseStudy || "#"}
+            {...(project.link
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
             className="group relative block overflow-hidden rounded-2xl border border-line"
           >
             <motion.div style={{ y: imgY }}>
               <Image
                 src={project.image}
-                alt={`${project.title} — live site screenshot`}
+                alt={`${project.title} — screenshot`}
                 width={1440}
                 height={900}
                 className="h-60 w-full scale-[1.13] object-cover object-top transition-transform duration-700 group-hover:scale-[1.18] md:h-[380px]"
@@ -84,14 +157,16 @@ function StackCard({
                   </span>
                 ))}
               </div>
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-underline mt-5 inline-block text-xs uppercase tracking-[0.18em] text-muted hover:text-foreground"
-              >
-                Source code ↗
-              </a>
+              {project.repo && (
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline mt-5 inline-block text-xs uppercase tracking-[0.18em] text-muted hover:text-foreground"
+                >
+                  Source code ↗
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -125,15 +200,20 @@ export default function Projects() {
         ))}
       </div>
 
-      <div className="mt-24 text-center">
-        <a
-          href="https://github.com/Yashchauhan008?tab=repositories"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="pill-outline inline-block px-8 py-4 text-[11px] font-bold uppercase tracking-[0.22em]"
-        >
-          + 74 more experiments on GitHub
-        </a>
+      <div className="mt-20 text-center">
+        <p className="label mb-2">This is just the highlight reel</p>
+        <ArchiveCta />
+        <p className="mt-2 text-xs text-muted">
+          client work · products · experiments —{" "}
+          <a
+            href="https://github.com/Yashchauhan008?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline hover:text-foreground"
+          >
+            + 74 more on GitHub ↗
+          </a>
+        </p>
       </div>
     </section>
   );

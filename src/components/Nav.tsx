@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#work" },
-  { label: "Journey", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/#work" },
+  { label: "Journey", href: "/#experience" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Nav() {

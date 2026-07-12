@@ -67,9 +67,27 @@ export const timeline = [
     links: [],
   },
   {
+    title: "Co-founder",
+    org: "The NextGen World · Startup",
+    period: "Mar 2025 — May 2025",
+    status: "completed",
+    description:
+      "Co-founded The NextGen World — a technology and skills development platform from Rajkot, empowering learners and businesses with future-ready AI skills.",
+    links: [
+      {
+        label: "LinkedIn ↗",
+        href: "https://www.linkedin.com/company/the-nextgen-world/",
+      },
+      {
+        label: "Instagram ↗",
+        href: "https://www.instagram.com/thenextgenworld/",
+      },
+    ],
+  },
+  {
     title: "Software Developer",
     org: "SFPL — Specific Fire Protection Limited",
-    period: "Jan 2026 — Present",
+    period: "Jul 2025 — Present",
     status: "current",
     description:
       "Building software at SFPL, a fire safety company on a mission to 'Make Fire Safe India' — including SFPL Connect, an IoT fire monitoring platform with hardware, web portal, and mobile app. 10+ years of industry experience, 150+ projects.",
@@ -95,10 +113,24 @@ export const timeline = [
   },
 ];
 
-export const projects = [
+export type Project = {
+  index: string;
+  title: string;
+  year: string;
+  stack: string[];
+  description: string;
+  link: string;
+  repo: string;
+  image: string;
+  accent: string;
+  caseStudy?: string;
+};
+
+export const projects: Project[] = [
   {
     index: "01",
     title: "Vapor UI",
+    caseStudy: "/projects/vapor-ui",
     year: "2025",
     stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
     description:
@@ -111,6 +143,7 @@ export const projects = [
   {
     index: "02",
     title: "Shanvi Enterprise",
+    caseStudy: "/projects/shanvi-enterprise",
     year: "2025",
     stack: ["MERN Stack", "VPS", "Ubuntu"],
     description:
@@ -122,18 +155,84 @@ export const projects = [
   },
   {
     index: "03",
-    title: "Study Buddy",
-    year: "2024",
-    stack: ["React", "Node.js", "Kinde Auth", "MongoDB"],
+    title: "Meganea",
+    caseStudy: "/projects/meganea",
+    year: "2025",
+    stack: ["React 19", "Node.js", "MongoDB", "Docker"],
     description:
-      "A learning management system serving 150+ authenticated university students with verified lab manual solutions, Google auth, and complete UI/UX design.",
-    link: "https://quicklabs.fun",
-    repo: "https://github.com/Yashchauhan008/studybuddy-v2",
-    image: "/images/studybuddy.png",
-    accent: "#10b981",
+      "Supply-chain platform for a ceramic tile exporter — two role-scoped apps (India operations + Dubai sales) on one API, tracing tiles from factory QC to customer delivery. ~49K LOC delivered solo.",
+    link: "https://india.meganea.in",
+    repo: "",
+    image: "/images/projects/meganea/india-login.png",
+    accent: "#14b8a6",
   },
   {
     index: "04",
+    title: "QuickLabs Pro",
+    caseStudy: "/projects/quicklabs-pro",
+    year: "2024 — 2026",
+    stack: ["React 19", "TypeScript", "PostgreSQL", "Express"],
+    description:
+      "The study-resource platform that served 150+ university students — verified lab solutions, in-browser PDF/DOCX/PPTX preview, peer ratings, and race-proof daily quotas.",
+    link: "https://quicklabs.pro",
+    repo: "https://github.com/Yashchauhan008/studybuddy-v2",
+    image: "/images/projects/quicklabs/home.png",
+    accent: "#10b981",
+  },
+  {
+    index: "05",
+    title: "Nirvana",
+    caseStudy: "/projects/nirvana",
+    year: "2026",
+    stack: ["Next.js 16", "GSAP", "OGL · Three.js", "PostgreSQL"],
+    description:
+      "Cinematic ecommerce for luxury chain-mounted eyewear — hand-written GLSL hero, Lenis + ScrollTrigger choreography, Razorpay token payments, and a full admin dashboard.",
+    link: "https://www.nirvana.style/",
+    repo: "",
+    image: "/images/projects/nirvana/banner-1.png",
+    accent: "#c9a15f",
+  },
+  {
+    index: "06",
+    title: "NotchPal",
+    caseStudy: "/projects/notchpal",
+    year: "2026",
+    stack: ["Swift", "SwiftUI", "AppKit", "CoreAudio"],
+    description:
+      "A macOS notch companion — Now Playing, file shelf, camera mirror, and a volume/brightness HUD living around the MacBook notch. Built with SPM only, no Xcode.",
+    link: "",
+    repo: "",
+    image: "/images/projects/notchpal/expanded.png",
+    accent: "#a78bfa",
+  },
+  {
+    index: "07",
+    title: "PopClock",
+    caseStudy: "/projects/popclock",
+    year: "2025",
+    stack: ["Vanilla JS", "Manifest V3"],
+    description:
+      "A floating clock & timer Chrome extension — draggable, always on top of any page. Built on a road trip, now 300+ users on the Chrome Web Store.",
+    link: "https://chromewebstore.google.com/detail/popclock-floating-time-ti/mnadajlookkgclepgniefdcgjnndbppm?hl=en",
+    repo: "",
+    image: "/images/projects/popclock/menu.png",
+    accent: "#22d3ee",
+  },
+  {
+    index: "08",
+    title: "Yash's New Tab",
+    caseStudy: "/projects/yashs-new-tab",
+    year: "2025",
+    stack: ["Vanilla JS", "Manifest V3"],
+    description:
+      "A customizable new-tab dashboard — animated clocks, macOS-style dock, themes, and shortcuts. Live on the Chrome Web Store.",
+    link: "https://chromewebstore.google.com/detail/yashs-new-tab/gdblidbljmifeifmoofnofjiiakopbmi?hl=en-GB",
+    repo: "",
+    image: "/images/projects/newtab/home.png",
+    accent: "#fb923c",
+  },
+  {
+    index: "09",
     title: "Elev8Labs",
     year: "2024",
     stack: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
@@ -145,7 +244,7 @@ export const projects = [
     accent: "#8b5cf6",
   },
   {
-    index: "05",
+    index: "10",
     title: "The IQIC",
     year: "2024",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -156,40 +255,77 @@ export const projects = [
     image: "/images/iqic.png",
     accent: "#ef4444",
   },
+];
+
+/* Archive projects — shown on /projects below the featured ones.
+   Add entries here as you ship: image is optional (used for hover preview). */
+export type ArchiveProject = {
+  title: string;
+  year: string;
+  stack: string[];
+  link?: string;
+  repo?: string;
+  image?: string;
+  caseStudy?: string;
+};
+
+export const moreProjects: ArchiveProject[] = [
   {
-    index: "06",
+    title: "BrainRot Counter",
+    year: "2026",
+    stack: ["Chrome MV3", "Next.js 16", "PostgreSQL"],
+    link: "https://brainrot.quicklabs.pro",
+    image: "/images/projects/brainrot/portal.png",
+    caseStudy: "/projects/brainrot",
+  },
+  {
     title: "Campaign Website",
     year: "2023",
     stack: ["React", "Node.js", "Multer", "Cloudinary"],
-    description:
-      "Interactive campaign platform for coding competitions with a block-based photo sharing system and cloud file uploads.",
     link: "https://venchers-campaign.vercel.app",
     repo: "https://github.com/Yashchauhan008/venchers-campaign",
     image: "/images/campaign.png",
-    accent: "#ec4899",
   },
 ];
 
-export const awards = [
+/* photo highlights — drop real photos into /public/images/highlights/
+   with these exact filenames to replace the generated placeholders */
+export const highlights = [
   {
     title: "1st Runner-up — Puzzle Parade",
     detail: "Coding + aptitude competition · Darshan University",
     year: "2023",
+    image: "/images/highlights/puzzle-parade.jpg",
+  },
+  {
+    title: "Co-founded The NextGen World",
+    detail: "AI & skills development startup · Rajkot",
+    year: "2025",
+    image: "/images/highlights/nextgen-world.jpg",
+  },
+  {
+    title: "Teaching Assistant",
+    detail: "Mentored students in web development · Darshan University",
+    year: "2023 — 2025",
+    image: "/images/highlights/teaching.jpg",
   },
   {
     title: "3rd Runner-up — Web Artisan",
     detail: "Web development competition · Frolic",
     year: "2023",
+    image: "/images/highlights/web-artisan.jpg",
   },
   {
-    title: "Multi-hackathon Participant",
+    title: "Hackathon Runs",
     detail: "DAIICT · MSU · Darshan University",
     year: "2022 — 2024",
+    image: "/images/highlights/hackathons.jpg",
   },
   {
     title: "Google Cloud Event",
     detail: "Cloud computing skills program",
     year: "2024",
+    image: "/images/highlights/google-cloud.jpg",
   },
 ];
 
