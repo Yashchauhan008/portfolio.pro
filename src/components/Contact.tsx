@@ -18,7 +18,7 @@ type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
   const year = new Date().getFullYear();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -42,7 +42,7 @@ export default function Contact() {
         throw new Error(data.error || "Failed to send message.");
       }
 
-      setForm({ name: "", email: "", message: "" });
+      setForm({ name: "", email: "", phone: "", message: "" });
       setStatus("success");
     } catch (err) {
       setStatus("error");
@@ -78,7 +78,14 @@ export default function Contact() {
               {siteConfig.email}
             </a>
             <p className="mt-3 text-sm text-black/50">
-              {siteConfig.phone} · {siteConfig.location}
+              <a
+                href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+                className="link-underline transition-colors hover:text-black"
+              >
+                {siteConfig.phone}
+              </a>
+              {" · "}
+              {siteConfig.location}
             </p>
           </FadeUp>
         </div>
@@ -105,6 +112,17 @@ export default function Contact() {
               value={form.email}
               disabled={status === "sending"}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
+              className={inputClass}
+            />
+            <input
+              type="tel"
+              required
+              name="phone"
+              autoComplete="tel"
+              placeholder="Your mobile number"
+              value={form.phone}
+              disabled={status === "sending"}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
               className={inputClass}
             />
             <textarea

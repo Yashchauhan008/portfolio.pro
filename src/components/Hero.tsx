@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-svh flex-col justify-center overflow-hidden px-6 pt-24 md:px-10"
+      className="relative flex min-h-svh flex-col justify-center overflow-hidden px-6 pt-28 md:px-10 md:pt-32"
     >
       <motion.div style={{ y, opacity }}>
         {/* giant condensed headline spanning the full width */}

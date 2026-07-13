@@ -129,19 +129,6 @@ export type Project = {
 export const projects: Project[] = [
   {
     index: "01",
-    title: "Vapor UI",
-    caseStudy: "/projects/vapor-ui",
-    year: "2025",
-    stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    description:
-      "A modern React component library with 20+ reusable components — text animations, background effects, and interactive elements powered by Framer Motion.",
-    link: "https://vapor-ui.vercel.app",
-    repo: "https://github.com/Yashchauhan008/vapor-ui",
-    image: "/images/vapor-ui.png",
-    accent: "#0ea5e9",
-  },
-  {
-    index: "02",
     title: "Shanvi Enterprise",
     caseStudy: "/projects/shanvi-enterprise",
     year: "2025",
@@ -154,7 +141,7 @@ export const projects: Project[] = [
     accent: "#f59e0b",
   },
   {
-    index: "03",
+    index: "02",
     title: "Meganea",
     caseStudy: "/projects/meganea",
     year: "2025",
@@ -167,17 +154,29 @@ export const projects: Project[] = [
     accent: "#14b8a6",
   },
   {
-    index: "04",
-    title: "QuickLabs Pro",
-    caseStudy: "/projects/quicklabs-pro",
-    year: "2024 — 2026",
-    stack: ["React 19", "TypeScript", "PostgreSQL", "Express"],
+    index: "03",
+    title: "NotchPal",
+    caseStudy: "/projects/notchpal",
+    year: "2026",
+    stack: ["Swift", "SwiftUI", "AppKit", "CoreAudio"],
     description:
-      "The study-resource platform that served 150+ university students — verified lab solutions, in-browser PDF/DOCX/PPTX preview, peer ratings, and race-proof daily quotas.",
-    link: "https://quicklabs.pro",
-    repo: "https://github.com/Yashchauhan008/studybuddy-v2",
-    image: "/images/projects/quicklabs/home.png",
-    accent: "#10b981",
+      "A macOS notch companion — Now Playing, file shelf, camera mirror, and a volume/brightness HUD living around the MacBook notch. Built with SPM only, no Xcode.",
+    link: "",
+    repo: "",
+    image: "/images/projects/notchpal/expanded.png",
+    accent: "#a78bfa",
+  },
+  {
+    index: "04",
+    title: "Elev8Labs",
+    year: "2024",
+    stack: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+    description:
+      "Creative agency portfolio for a client — custom UI, expressive motion, and fully responsive design.",
+    link: "https://elev8labs.in",
+    repo: "https://github.com/Yashchauhan008/elev8labs",
+    image: "/images/elev8labs.png",
+    accent: "#8b5cf6",
   },
   {
     index: "05",
@@ -194,70 +193,20 @@ export const projects: Project[] = [
   },
   {
     index: "06",
-    title: "NotchPal",
-    caseStudy: "/projects/notchpal",
+    title: "BrainRot Counter",
+    caseStudy: "/projects/brainrot",
     year: "2026",
-    stack: ["Swift", "SwiftUI", "AppKit", "CoreAudio"],
+    stack: ["Chrome MV3", "Next.js 16", "PostgreSQL"],
     description:
-      "A macOS notch companion — Now Playing, file shelf, camera mirror, and a volume/brightness HUD living around the MacBook notch. Built with SPM only, no Xcode.",
-    link: "",
+      "An extension + web platform that counts every Reel and Short you watch — and roasts you into stopping. Compete with friends for the cleanest brain.",
+    link: "https://brainrot.quicklabs.pro",
     repo: "",
-    image: "/images/projects/notchpal/expanded.png",
-    accent: "#a78bfa",
-  },
-  {
-    index: "07",
-    title: "PopClock",
-    caseStudy: "/projects/popclock",
-    year: "2025",
-    stack: ["Vanilla JS", "Manifest V3"],
-    description:
-      "A floating clock & timer Chrome extension — draggable, always on top of any page. Built on a road trip, now 300+ users on the Chrome Web Store.",
-    link: "https://chromewebstore.google.com/detail/popclock-floating-time-ti/mnadajlookkgclepgniefdcgjnndbppm?hl=en",
-    repo: "",
-    image: "/images/projects/popclock/menu.png",
-    accent: "#22d3ee",
-  },
-  {
-    index: "08",
-    title: "Yash's New Tab",
-    caseStudy: "/projects/yashs-new-tab",
-    year: "2025",
-    stack: ["Vanilla JS", "Manifest V3"],
-    description:
-      "A customizable new-tab dashboard — animated clocks, macOS-style dock, themes, and shortcuts. Live on the Chrome Web Store.",
-    link: "https://chromewebstore.google.com/detail/yashs-new-tab/gdblidbljmifeifmoofnofjiiakopbmi?hl=en-GB",
-    repo: "",
-    image: "/images/projects/newtab/home.png",
-    accent: "#fb923c",
-  },
-  {
-    index: "09",
-    title: "Elev8Labs",
-    year: "2024",
-    stack: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
-    description:
-      "Creative agency portfolio for a client — custom UI, expressive motion, and fully responsive design.",
-    link: "https://elev8labs.in",
-    repo: "https://github.com/Yashchauhan008/elev8labs",
-    image: "/images/elev8labs.png",
-    accent: "#8b5cf6",
-  },
-  {
-    index: "10",
-    title: "The IQIC",
-    year: "2024",
-    stack: ["HTML", "CSS", "JavaScript"],
-    description:
-      "Freelance business website for a quality inspection company — professional, comprehensive, responsive.",
-    link: "https://theiqic.vercel.app",
-    repo: "https://github.com/Yashchauhan008/iqic",
-    image: "/images/iqic.png",
-    accent: "#ef4444",
+    image: "/images/projects/brainrot/portal.png",
+    accent: "#f43f5e",
   },
 ];
 
-/* Archive projects — shown on /projects below the featured ones.
+/* Archive-only projects — shown on /projects below the featured ones.
    Add entries here as you ship: image is optional (used for hover preview). */
 export type ArchiveProject = {
   title: string;
@@ -271,12 +220,46 @@ export type ArchiveProject = {
 
 export const moreProjects: ArchiveProject[] = [
   {
-    title: "BrainRot Counter",
-    year: "2026",
-    stack: ["Chrome MV3", "Next.js 16", "PostgreSQL"],
-    link: "https://brainrot.quicklabs.pro",
-    image: "/images/projects/brainrot/portal.png",
-    caseStudy: "/projects/brainrot",
+    title: "Vapor UI",
+    year: "2025",
+    stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    link: "https://vapor-ui.vercel.app",
+    repo: "https://github.com/Yashchauhan008/vapor-ui",
+    image: "/images/vapor-ui.png",
+    caseStudy: "/projects/vapor-ui",
+  },
+  {
+    title: "QuickLabs Pro",
+    year: "2024 — 2026",
+    stack: ["React 19", "TypeScript", "PostgreSQL", "Express"],
+    link: "https://quicklabs.pro",
+    repo: "https://github.com/Yashchauhan008/studybuddy-v2",
+    image: "/images/projects/quicklabs/home.png",
+    caseStudy: "/projects/quicklabs-pro",
+  },
+  {
+    title: "PopClock",
+    year: "2025",
+    stack: ["Vanilla JS", "Manifest V3"],
+    link: "https://chromewebstore.google.com/detail/popclock-floating-time-ti/mnadajlookkgclepgniefdcgjnndbppm?hl=en",
+    image: "/images/projects/popclock/menu.png",
+    caseStudy: "/projects/popclock",
+  },
+  {
+    title: "Yash's New Tab",
+    year: "2025",
+    stack: ["Vanilla JS", "Manifest V3"],
+    link: "https://chromewebstore.google.com/detail/yashs-new-tab/gdblidbljmifeifmoofnofjiiakopbmi?hl=en-GB",
+    image: "/images/projects/newtab/home.png",
+    caseStudy: "/projects/yashs-new-tab",
+  },
+  {
+    title: "The IQIC",
+    year: "2024",
+    stack: ["HTML", "CSS", "JavaScript"],
+    link: "https://theiqic.vercel.app",
+    repo: "https://github.com/Yashchauhan008/iqic",
+    image: "/images/iqic.png",
   },
   {
     title: "Campaign Website",

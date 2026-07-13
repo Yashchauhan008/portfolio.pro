@@ -6,11 +6,21 @@ export const runtime = "nodejs";
 type ContactBody = {
   name?: string;
   email?: string;
+  phone?: string;
   message?: string;
 };
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhone(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  return digits.length >= 7 && digits.length <= 15;
+}
+
+function escapeHtml(value: string) {
+  return value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 export async function POST(request: Request) {
@@ -24,14 +34,22 @@ export async function POST(request: Request) {
 
   const name = body.name?.trim() ?? "";
   const email = body.email?.trim() ?? "";
+  const phone = body.phone?.trim() ?? "";
   const message = body.message?.trim() ?? "";
 
-  if (!name || !email || !message) {
-    return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
+  if (!name || !email || !phone || !message) {
+    return NextResponse.json(
+      { error: "Name, email, mobile number, and message are required." },
+      { status: 400 },
+    );
   }
 
   if (!isValidEmail(email)) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+  }
+
+  if (!isValidPhone(phone)) {
+    return NextResponse.json({ error: "Please enter a valid mobile number." }, { status: 400 });
   }
 
   if (message.length > 5000) {
@@ -61,20 +79,27 @@ export async function POST(request: Request) {
     },
   });
 
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safePhone = escapeHtml(phone);
+  const safeMessage = escapeHtml(message);
+  const telHref = phone.replace(/\s+/g, "");
+
   try {
     await transporter.sendMail({
       from: `"${name}" <${SMTP_USER}>`,
       to: CONTACT_TO_EMAIL,
       replyTo: email,
       subject: `Portfolio inquiry — ${name}`,
-      text: `${message}\n\n— ${name} (${email})`,
+      text: `${message}\n\n— ${name}\nEmail: ${email}\nPhone: ${phone}`,
       html: `
         <div style="font-family: system-ui, sans-serif; line-height: 1.6; color: #111;">
-          <p style="white-space: pre-wrap;">${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+          <p style="white-space: pre-wrap;">${safeMessage}</p>
           <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
           <p style="color: #666; font-size: 14px;">
-            From: <strong>${name.replace(/</g, "&lt;")}</strong><br />
-            Email: <a href="mailto:${email}">${email.replace(/</g, "&lt;")}</a>
+            From: <strong>${safeName}</strong><br />
+            Email: <a href="mailto:${safeEmail}">${safeEmail}</a><br />
+            Phone: <a href="tel:${escapeHtml(telHref)}">${safePhone}</a>
           </p>
         </div>
       `,

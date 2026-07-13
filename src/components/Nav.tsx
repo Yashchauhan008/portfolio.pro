@@ -28,24 +28,35 @@ export default function Nav() {
   return (
     <motion.header
       initial={{ y: -70, opacity: 0 }}
-      animate={{ y: hidden ? -90 : 0, opacity: 1 }}
+      animate={{ y: hidden ? -120 : 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1], delay: hidden ? 0 : 1.3 }}
-      className={`fixed inset-x-0 top-0 z-[80] transition-colors duration-500 ${
-        scrolled ? "bg-background/80 backdrop-blur-md border-b border-line" : ""
-      }`}
+      className="fixed inset-x-0 top-0 z-[80]"
     >
-      {/* links spread edge-to-edge like the reference */}
-      <nav className="flex items-center justify-between px-6 py-5 md:px-16">
-        {links.map((l) => (
-          <a
-            key={l.href}
-            href={l.href}
-            className="text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/80 transition-colors duration-300 hover:text-foreground md:text-[11px]"
-          >
-            {l.label}
-          </a>
-        ))}
-      </nav>
+      {/* humorous WIP label */}
+      <div className="grad-bg px-4 py-2 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white md:text-[11px]">
+          Portfolio still in development — bugs are freelancing until I hire them
+        </p>
+      </div>
+
+      <div
+        className={`transition-colors duration-500 ${
+          scrolled ? "border-b border-line bg-background/80 backdrop-blur-md" : ""
+        }`}
+      >
+        {/* links spread edge-to-edge like the reference */}
+        <nav className="flex items-center justify-between px-6 py-5 md:px-16">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/80 transition-colors duration-300 hover:text-foreground md:text-[11px]"
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </motion.header>
   );
 }
