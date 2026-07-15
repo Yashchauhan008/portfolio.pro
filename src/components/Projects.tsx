@@ -88,24 +88,24 @@ function StackCard({
         style={{ scale }}
         className="origin-top overflow-hidden rounded-[1.75rem] border border-line bg-[#0d0d0d] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
       >
-        {/* header row — number, name, live pill */}
-        <div className="flex items-center justify-between gap-4 border-b border-line px-6 py-5 md:px-9">
-          <div className="flex items-center gap-5">
-            <span className="display text-4xl leading-[0.8] md:text-6xl">
+        {/* header row — number, name, actions (stacks on mobile) */}
+        <div className="flex flex-col gap-4 border-b border-line px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 md:px-9">
+          <div className="flex min-w-0 items-center gap-4 md:gap-5">
+            <span className="display shrink-0 text-4xl leading-[0.8] md:text-6xl">
               {project.index}
             </span>
-            <div className="flex flex-col justify-center">
+            <div className="min-w-0 flex-1">
               <p className="label leading-none">Project · {project.year}</p>
-              <h3 className="display mt-1.5 text-xl leading-none md:text-3xl">
+              <h3 className="display mt-1.5 truncate text-xl leading-none md:text-3xl">
                 {project.title}
               </h3>
             </div>
           </div>
-          <div className="flex shrink-0 flex-wrap items-center justify-end gap-3">
+          <div className="flex w-full shrink-0 flex-wrap items-center gap-2 sm:w-auto sm:justify-end sm:gap-3">
             {project.caseStudy && (
               <Link
                 href={project.caseStudy}
-                className="grad-pill rounded-full px-6 py-3 text-[10px] font-bold uppercase tracking-[0.22em] text-white md:text-[11px]"
+                className="grad-pill flex-1 rounded-full px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-white sm:flex-none sm:px-6 sm:py-3 sm:tracking-[0.22em] md:text-[11px]"
               >
                 Case study
               </Link>
@@ -115,9 +115,10 @@ function StackCard({
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pill-outline px-6 py-3 text-[10px] font-bold uppercase tracking-[0.22em] md:text-[11px]"
+                className="pill-outline flex-1 px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-[0.18em] sm:flex-none sm:px-6 sm:py-3 sm:tracking-[0.22em] md:text-[11px]"
               >
-                Live project
+                <span className="sm:hidden">Live</span>
+                <span className="hidden sm:inline">Live project</span>
               </a>
             )}
           </div>

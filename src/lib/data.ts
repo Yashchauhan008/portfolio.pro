@@ -16,7 +16,7 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/yash_chauhan_________",
   },
   about: [
-    "I'm a fullstack engineer from Gujarat, India. I build software at SFPL, and spend the rest of my time shipping my own products, freelance work, and open-source tools.",
+    "I'm a fullstack engineer from Gujarat, India. I build software at SFPL, and spend the rest of my time shipping my own products, freelance work, and open-source tools — quietly past 1,400 commits on GitHub.",
     "I build scalable web applications end-to-end: from freelance client sites managed through their complete lifecycle, to an enterprise inventory system tracking ₹4 crore in assets, to a component library used for expressive motion design. I care deeply about the details — typography, easing curves, and the last 10% that makes an interface feel inevitable.",
   ],
   workProcess: [
