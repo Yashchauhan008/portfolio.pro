@@ -32,13 +32,6 @@ export default function Nav() {
       transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1], delay: hidden ? 0 : 1.3 }}
       className="fixed inset-x-0 top-0 z-[80]"
     >
-      {/* humorous WIP label */}
-      <div className="grad-bg px-4 py-2 text-center">
-        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white md:text-[11px]">
-          Portfolio still in development — bugs are freelancing until I hire them
-        </p>
-      </div>
-
       <div
         className={`transition-colors duration-500 ${
           scrolled ? "border-b border-line bg-background/80 backdrop-blur-md" : ""

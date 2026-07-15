@@ -26,7 +26,12 @@ export type CaseStudy = {
   outcome: { heading: string; paragraphs: string[] };
   next: { heading: string; items: string[] };
   /** Extra project shots shown under the hero (hero image is included automatically). */
-  gallery?: { src: string; caption: string }[];
+  gallery?: {
+    src: string;
+    caption: string;
+    /** When set, the carousel slide is a YouTube embed (src is used as the thumbnail). */
+    youtubeId?: string;
+  }[];
 };
 
 export const caseStudies: Record<string, CaseStudy> = {
@@ -188,7 +193,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     tagline:
       "An inventory management system running a wooden-pallet manufacturer's ₹4 crore stock — my first freelance delivery, still live in production.",
     year: "2025",
-    role: "Freelance fullstack developer",
+    role: "Freelance fullstack engineer",
     type: "Client project · Inventory management",
     status: "Live in production",
     stack: ["React", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Docker", "VPS · Nginx"],
@@ -315,7 +320,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     tagline:
       "A two-country supply-chain platform for a ceramic tile exporter — factory QC in India to customer delivery in Dubai, one traceable pipeline.",
     year: "2025",
-    role: "Freelance fullstack developer",
+    role: "Freelance fullstack engineer",
     type: "Client project · Supply-chain platform",
     status: "Live in production",
     stack: ["React 19", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Cloudinary", "Docker", "Nginx"],
@@ -575,7 +580,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     tagline:
       "A cinematic ecommerce experience for luxury chain-mounted eyewear — hand-written WebGL shaders, GSAP choreography, and a full commerce backend.",
     year: "2026",
-    role: "Fullstack developer & motion engineer",
+    role: "Fullstack engineer & motion engineer",
     type: "Client product · Ecommerce",
     status: "Live",
     stack: [
@@ -715,6 +720,10 @@ export const caseStudies: Record<string, CaseStudy> = {
         label: "Chrome Web Store",
         href: "https://chromewebstore.google.com/detail/popclock-floating-time-ti/mnadajlookkgclepgniefdcgjnndbppm?hl=en",
       },
+      {
+        label: "Watch demo",
+        href: "https://www.youtube.com/watch?v=LS7jINeB1_U",
+      },
     ],
     overview: [
       "Morbi to Ahmedabad is about five hours by road. Somewhere past Chotila I decided the trip needed a deliverable: a draggable clock that floats over every webpage, because fullscreen tabs kept hiding my system clock during presentations and movies.",
@@ -809,6 +818,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       items: ["chrome.alarms for battery-friendly timing", "Pomodoro presets", "Store listing refresh"],
     },
     gallery: [
+      {
+        src: "https://img.youtube.com/vi/LS7jINeB1_U/maxresdefault.jpg",
+        youtubeId: "LS7jINeB1_U",
+        caption: "Demo — floating clock, drag, and timer on a live page",
+      },
       {
         src: "/images/projects/popclock/menu.png",
         caption: "PopClock controls — format, timer, and focus options",

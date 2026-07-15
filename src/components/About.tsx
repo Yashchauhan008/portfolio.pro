@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { siteConfig, skills } from "@/lib/data";
-import { CountUp, FadeUp, Reveal, WordReveal } from "./ScrollFx";
+import { FadeUp, Reveal, WordReveal } from "./ScrollFx";
 import { BoltIcon, DiscIcon, FlowerIcon, OrbIcon, RingIcon, SparkleIcon } from "./Icons";
 
 const skillGroups = [
@@ -87,46 +87,116 @@ export default function About() {
           ))}
         </div>
 
-        {/* stats as outlined cards, matching the project/journey cards */}
-        <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {siteConfig.stats.map((stat, i) => (
-            <FadeUp key={stat.label} delay={i * 0.06}>
-              <div className="group h-full rounded-3xl border border-line bg-[#0d0d0d] p-6 transition-colors duration-300 hover:border-foreground/40">
-                <p className="display grad-text text-4xl md:text-5xl">
-                  <CountUp value={stat.value} />
-                </p>
-                <p className="mt-3 text-[10px] uppercase tracking-[0.16em] text-muted">
-                  {stat.label}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-
-        {/* skills as chips, matching the project stack pills */}
-        <div className="mt-16 space-y-10">
-          {skillGroups.map((group, gi) => (
-            <FadeUp key={group.title} delay={gi * 0.05}>
-              <p className="label mb-4">{group.title}</p>
-              <div className="flex flex-wrap justify-center gap-2.5">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-line px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/75 transition-colors duration-300 hover:border-foreground/50 hover:text-foreground"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-
-        {/* gradient glow bar, like the reference's about footer */}
-        <FadeUp delay={0.1}>
-          <div className="grad-bg mx-auto mt-20 h-14 w-56 rounded-full opacity-70 blur-2xl md:w-72" />
+        <FadeUp delay={0.08} className="mt-10">
+          <a
+            href={siteConfig.resume}
+            download="yash-chauhan-resume.pdf"
+            className="grad-pill inline-block rounded-full px-9 py-4 text-[11px] font-bold uppercase tracking-[0.22em] text-white"
+          >
+            Download resume
+          </a>
         </FadeUp>
       </div>
+
+      {/* How I Work — process timeline */}
+      <div className="mx-auto mt-24 max-w-6xl md:mt-32">
+        <h3 className="display mb-14 text-center text-4xl md:mb-20 md:text-6xl">
+          <Reveal>
+            How I <span className="grad-text">Work</span>
+          </Reveal>
+        </h3>
+
+        {/* desktop: horizontal journey */}
+        <ol className="relative hidden md:grid md:grid-cols-5">
+          <motion.span
+            aria-hidden
+            className="absolute left-[10%] right-[10%] top-7 h-px origin-left bg-line"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
+          />
+
+          {siteConfig.workProcess.map((item, i) => (
+            <FadeUp key={item.step} delay={0.15 + i * 0.08}>
+              <li className="relative flex flex-col items-center px-3 text-center">
+                <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-line bg-[#0d0d0d]">
+                  <span className="display grad-text text-lg leading-none">{item.step}</span>
+                </span>
+                {i === 0 ? (
+                  <a
+                    href="/#contact"
+                    className="link-underline mt-6 display text-base text-foreground md:text-lg"
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <h4 className="mt-6 display text-base md:text-lg">{item.title}</h4>
+                )}
+              </li>
+            </FadeUp>
+          ))}
+        </ol>
+
+        {/* mobile: vertical journey */}
+        <ol className="relative mx-auto max-w-sm md:hidden">
+          <motion.span
+            aria-hidden
+            className="absolute bottom-6 left-7 top-6 w-px origin-top bg-line"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ duration: 1.1, ease: [0.65, 0, 0.35, 1] }}
+          />
+
+          {siteConfig.workProcess.map((item, i) => (
+            <FadeUp key={item.step} delay={i * 0.06}>
+              <li
+                className={`relative flex items-center gap-5 ${
+                  i === siteConfig.workProcess.length - 1 ? "" : "pb-10"
+                }`}
+              >
+                <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line bg-[#0d0d0d]">
+                  <span className="display grad-text text-lg leading-none">{item.step}</span>
+                </span>
+                {i === 0 ? (
+                  <a
+                    href="/#contact"
+                    className="link-underline display text-lg text-foreground"
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <h4 className="display text-lg">{item.title}</h4>
+                )}
+              </li>
+            </FadeUp>
+          ))}
+        </ol>
+      </div>
+
+      {/* skills as chips, matching the project stack pills */}
+      <div className="mx-auto mt-20 max-w-3xl space-y-10 text-center md:mt-24">
+        {skillGroups.map((group, gi) => (
+          <FadeUp key={group.title} delay={gi * 0.05}>
+            <p className="label mb-4">{group.title}</p>
+            <div className="flex flex-wrap justify-center gap-2.5">
+              {group.items.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-line px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/75 transition-colors duration-300 hover:border-foreground/50 hover:text-foreground"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </FadeUp>
+        ))}
+      </div>
+
+      <FadeUp delay={0.1}>
+        <div className="grad-bg mx-auto mt-20 h-14 w-56 rounded-full opacity-70 blur-2xl md:w-72" />
+      </FadeUp>
     </section>
   );
 }

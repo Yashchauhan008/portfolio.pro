@@ -2,27 +2,29 @@ export const siteConfig = {
   name: "Yash Chauhan",
   firstName: "Yash",
   lastName: "Chauhan",
-  role: "Fullstack Developer",
+  role: "Fullstack Engineer",
   tagline: "Crafting digital experiences with precision & soul.",
   location: "Morbi, Gujarat, India",
   email: "yashchauhan1775@gmail.com",
   phone: "+91 9974588518",
   url: "https://yash-chauhan.vercel.app",
   avatar: "/images/head.png",
+  resume: "/yash-chauhan-resume.pdf",
   socials: {
     github: "https://github.com/Yashchauhan008",
     linkedin: "https://www.linkedin.com/in/yashchauhan008/",
     instagram: "https://www.instagram.com/yash_chauhan_________",
   },
   about: [
-    "I'm a fullstack developer from Gujarat, India. By day I build software at SFPL — an IoT-powered fire safety company — and by night I ship products part-time for The NextGen World, a young startup.",
+    "I'm a fullstack engineer from Gujarat, India. I build software at SFPL — an IoT-powered fire safety company — and spend the rest of my time shipping my own products, freelance work, and open-source tools.",
     "I build scalable web applications end-to-end: from freelance client sites managed through their complete lifecycle, to an enterprise inventory system tracking ₹4 crore in assets, to a component library used for expressive motion design. I care deeply about the details — typography, easing curves, and the last 10% that makes an interface feel inevitable.",
   ],
-  stats: [
-    { value: "80+", label: "Repositories" },
-    { value: "150+", label: "Platform users served" },
-    { value: "₹4Cr", label: "Assets managed in prod" },
-    { value: "8.53", label: "CGPA · Darshan University" },
+  workProcess: [
+    { step: "01", title: "Contact Me" },
+    { step: "02", title: "Gather Requirements" },
+    { step: "03", title: "Wireframe & Designing" },
+    { step: "04", title: "Development & Testing" },
+    { step: "05", title: "Deliver to Customer" },
   ],
 };
 

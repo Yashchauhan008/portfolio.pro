@@ -17,14 +17,14 @@ const anton = Anton({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Fullstack Developer`,
+    default: `${siteConfig.name} — Fullstack Engineer`,
     template: `%s — ${siteConfig.name}`,
   },
   description:
-    "Yash Chauhan is a fullstack developer from Gujarat, India, building scalable web applications with React, Next.js, and Node.js — from enterprise inventory systems to expressive UI component libraries.",
+    "Yash Chauhan is a fullstack engineer from Gujarat, India, building scalable web applications with React, Next.js, and Node.js — from enterprise inventory systems to expressive UI component libraries.",
   keywords: [
     "Yash Chauhan",
-    "Fullstack Developer",
+    "Fullstack Engineer",
     "Frontend Developer",
     "React Developer",
     "Next.js Developer",
@@ -40,15 +40,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — Fullstack Developer`,
+    title: `${siteConfig.name} — Fullstack Engineer`,
     description:
-      "Fullstack developer crafting scalable web applications with precision & soul. React, Next.js, Node.js, and motion design.",
+      "Fullstack engineer crafting scalable web applications with precision & soul. React, Next.js, Node.js, and motion design.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — Fullstack Developer`,
+    title: `${siteConfig.name} — Fullstack Engineer`,
     description:
-      "Fullstack developer crafting scalable web applications with precision & soul.",
+      "Fullstack engineer crafting scalable web applications with precision & soul.",
   },
   robots: {
     index: true,
@@ -73,7 +73,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: siteConfig.name,
-  jobTitle: "Fullstack Developer",
+  jobTitle: "Fullstack Engineer",
   email: `mailto:${siteConfig.email}`,
   url: siteConfig.url,
   address: {

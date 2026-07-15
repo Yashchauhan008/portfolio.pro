@@ -7,7 +7,7 @@ import { AnimatePresence, motion, type PanInfo } from "motion/react";
 import type { CaseStudy } from "@/lib/caseStudies";
 import { FadeUp, LineGrow, Reveal, WordReveal } from "./ScrollFx";
 
-type Shot = { src: string; caption: string };
+type Shot = { src: string; caption: string; youtubeId?: string };
 
 function ProjectCarousel({
   shots,
@@ -20,6 +20,7 @@ function ProjectCarousel({
   const [direction, setDirection] = useState(0);
   const count = shots.length;
   const current = shots[index];
+  const isVideo = Boolean(current?.youtubeId);
 
   const goTo = useCallback(
     (next: number, dir?: number) => {
@@ -44,7 +45,7 @@ function ProjectCarousel({
   }, [count, prev, next]);
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
-    if (count < 2) return;
+    if (count < 2 || isVideo) return;
     const swipe = Math.abs(info.offset.x) > 60 || Math.abs(info.velocity.x) > 400;
     if (!swipe) return;
     if (info.offset.x < 0) next();
@@ -60,7 +61,7 @@ function ProjectCarousel({
         <div className="relative aspect-16/10 w-full touch-pan-y select-none bg-[#080808]">
           <AnimatePresence initial={false} custom={direction} mode="popLayout">
             <motion.div
-              key={current.src}
+              key={current.youtubeId ? `yt-${current.youtubeId}` : current.src}
               custom={direction}
               variants={{
                 enter: (d: number) => ({ x: d > 0 ? "55%" : "-55%", opacity: 0 }),
@@ -71,21 +72,31 @@ function ProjectCarousel({
               animate="center"
               exit="exit"
               transition={{ type: "spring", stiffness: 320, damping: 34, mass: 0.8 }}
-              drag={count > 1 ? "x" : false}
+              drag={count > 1 && !isVideo ? "x" : false}
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.18}
               onDragEnd={onDragEnd}
-              className="absolute inset-0 cursor-grab active:cursor-grabbing"
+              className={`absolute inset-0 ${isVideo ? "" : "cursor-grab active:cursor-grabbing"}`}
             >
-              <Image
-                src={current.src}
-                alt={current.caption || `${title} — screenshot ${index + 1}`}
-                fill
-                priority={index === 0}
-                quality={95}
-                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1400px"
-                className="pointer-events-none object-contain"
-              />
+              {current.youtubeId ? (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${current.youtubeId}?rel=0&modestbranding=1`}
+                  title={current.caption || `${title} — demo video`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full border-0"
+                />
+              ) : (
+                <Image
+                  src={current.src}
+                  alt={current.caption || `${title} — screenshot ${index + 1}`}
+                  fill
+                  priority={index === 0}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1400px"
+                  className="pointer-events-none object-contain"
+                />
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -94,7 +105,7 @@ function ProjectCarousel({
               <button
                 type="button"
                 onClick={prev}
-                aria-label="Previous image"
+                aria-label="Previous slide"
                 className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white backdrop-blur-md transition-colors hover:bg-black/80 md:left-4 md:h-11 md:w-11"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -104,7 +115,7 @@ function ProjectCarousel({
               <button
                 type="button"
                 onClick={next}
-                aria-label="Next image"
+                aria-label="Next slide"
                 className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white backdrop-blur-md transition-colors hover:bg-black/80 md:right-4 md:h-11 md:w-11"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -128,9 +139,9 @@ function ProjectCarousel({
             <div className="flex items-center gap-2">
               {shots.map((shot, i) => (
                 <button
-                  key={shot.src}
+                  key={shot.youtubeId ? `yt-${shot.youtubeId}` : shot.src}
                   type="button"
-                  aria-label={`Go to image ${i + 1}`}
+                  aria-label={`Go to slide ${i + 1}`}
                   aria-current={i === index}
                   onClick={() => goTo(i, i > index ? 1 : -1)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
@@ -150,10 +161,10 @@ function ProjectCarousel({
         <div className="mt-4 flex gap-3 overflow-x-auto pb-1 scrollbar-none">
           {shots.map((shot, i) => (
             <button
-              key={shot.src}
+              key={shot.youtubeId ? `yt-${shot.youtubeId}` : shot.src}
               type="button"
               onClick={() => goTo(i, i > index ? 1 : -1)}
-              aria-label={`Show ${shot.caption || `image ${i + 1}`}`}
+              aria-label={`Show ${shot.caption || `slide ${i + 1}`}`}
               className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border transition-all duration-300 md:h-20 md:w-32 ${
                 i === index
                   ? "border-foreground/70 opacity-100"
@@ -167,6 +178,15 @@ function ProjectCarousel({
                 sizes="128px"
                 className="object-cover object-top"
               />
+              {shot.youtubeId && (
+                <span className="absolute inset-0 flex items-center justify-center bg-black/35">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/90 text-black shadow-sm">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden>
+                      <path d="M2.2 1.1v7.8L8.6 5 2.2 1.1z" />
+                    </svg>
+                  </span>
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -177,13 +197,28 @@ function ProjectCarousel({
 
 export default function CaseStudyPage({ study }: { study: CaseStudy }) {
   const heroCaption =
-    study.gallery?.find((shot) => shot.src === study.image)?.caption ??
-    `${study.title} — overview`;
+    study.gallery?.find((shot) => !shot.youtubeId && shot.src === study.image)
+      ?.caption ?? `${study.title} — overview`;
 
-  const shots: Shot[] = [
-    { src: study.image, caption: heroCaption },
-    ...(study.gallery ?? []).filter((shot) => shot.src !== study.image),
+  // Videos first (if any), then images. Hero image is always included among images.
+  const gallery = study.gallery ?? [];
+  const videos = gallery.filter((shot) => shot.youtubeId);
+  const imageShots = gallery.filter((shot) => !shot.youtubeId);
+  const hasHero = imageShots.some((shot) => shot.src === study.image);
+  const images: Shot[] = [
+    ...(hasHero
+      ? imageShots.map((shot) =>
+          shot.src === study.image ? { ...shot, caption: shot.caption || heroCaption } : shot,
+        )
+      : [{ src: study.image, caption: heroCaption }, ...imageShots]),
   ];
+  // Keep hero first among images
+  const orderedImages = [
+    ...images.filter((shot) => shot.src === study.image),
+    ...images.filter((shot) => shot.src !== study.image),
+  ];
+
+  const shots: Shot[] = [...videos, ...orderedImages];
 
   return (
     <main className="px-6 pb-28 pt-32 md:px-10 md:pt-40">
