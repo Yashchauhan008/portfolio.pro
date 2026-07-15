@@ -16,7 +16,7 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/yash_chauhan_________",
   },
   about: [
-    "I'm a fullstack engineer from Gujarat, India. I build software at SFPL — an IoT-powered fire safety company — and spend the rest of my time shipping my own products, freelance work, and open-source tools.",
+    "I'm a fullstack engineer from Gujarat, India. I build software at SFPL, and spend the rest of my time shipping my own products, freelance work, and open-source tools.",
     "I build scalable web applications end-to-end: from freelance client sites managed through their complete lifecycle, to an enterprise inventory system tracking ₹4 crore in assets, to a component library used for expressive motion design. I care deeply about the details — typography, easing curves, and the last 10% that makes an interface feel inevitable.",
   ],
   workProcess: [
@@ -29,10 +29,21 @@ export const siteConfig = {
 };
 
 export const skills = {
-  languages: ["JavaScript", "TypeScript", "Java", "Python", "C"],
+  languages: ["JavaScript", "TypeScript", "Java", "Python"],
   frontend: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "GSAP", "Three.js", "Angular"],
-  backend: ["Node.js", "Express", "MongoDB", "REST APIs", "VPS Deployment"],
-  tools: ["Git", "Figma", "Blender", "Spline", "Cloudinary", "Notion"],
+  backend: ["Node.js", "Express", "MongoDB", "REST APIs"],
+  tools: [
+    "Hostinger",
+    "VPS",
+    "Portainer",
+    "Nginx",
+    "AWS S3",
+    "EC2",
+    "Git",
+    "Figma",
+    "Cloudinary",
+    "Notion",
+  ],
 };
 
 export const marqueeSkills = [
