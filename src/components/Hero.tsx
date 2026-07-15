@@ -79,7 +79,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* right — gradient pill CTA */}
+          {/* right — primary CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

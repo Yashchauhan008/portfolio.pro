@@ -196,16 +196,6 @@ export default function About() {
             />
           ))}
         </div>
-
-        <FadeUp delay={0.08} className="mt-10">
-          <a
-            href={siteConfig.resume}
-            download="yash-chauhan-resume.pdf"
-            className="grad-pill inline-block rounded-full px-9 py-4 text-[11px] font-bold uppercase tracking-[0.22em] text-white"
-          >
-            Download resume
-          </a>
-        </FadeUp>
       </div>
 
       {/* How I Work — map pins / route */}

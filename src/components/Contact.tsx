@@ -87,6 +87,13 @@ export default function Contact() {
               {" · "}
               {siteConfig.location}
             </p>
+            <a
+              href={siteConfig.resume}
+              download="yash-chauhan-resume.pdf"
+              className="mt-8 inline-block rounded-full border border-black/20 px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#111] transition-colors duration-300 hover:border-black hover:bg-black hover:text-white"
+            >
+              Download CV
+            </a>
           </FadeUp>
         </div>
 

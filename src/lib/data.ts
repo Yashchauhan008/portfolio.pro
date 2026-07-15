@@ -55,7 +55,7 @@ export const timeline = [
   {
     title: "B.Tech in Computer Science",
     org: "Darshan University, Rajkot",
-    period: "2022 — Dec 2025",
+    period: "2022 — May 2026",
     status: "completed",
     description:
       "Completed my 4-year engineering degree with a CGPA of 8.53 — the foundation years where I fell in love with building for the web.",
@@ -64,7 +64,7 @@ export const timeline = [
   {
     title: "Teaching Assistant — Web Development",
     org: "Darshan University · alongside my degree",
-    period: "2023 — Dec 2025",
+    period: "2023 — May 2026",
     status: "completed",
     description:
       "For the last 2 years of college, I taught what I love — mentoring students in web development, conducting tutorials, and supporting faculty with curriculum and project guidance.",
@@ -107,22 +107,13 @@ export const timeline = [
     links: [{ label: "specificfire.in ↗", href: "https://specificfire.in/" }],
   },
   {
-    title: "Part-time Freelance Developer",
-    org: "The NextGen World · Startup",
+    title: "Freelance Developer",
+    org: "Self-Employed · Clients",
     period: "2026 — Present",
     status: "current",
     description:
-      "Alongside my job, I build products part-time for The NextGen World — a young startup shipping for the next generation.",
-    links: [
-      {
-        label: "LinkedIn ↗",
-        href: "https://www.linkedin.com/company/the-nextgen-world/",
-      },
-      {
-        label: "Instagram ↗",
-        href: "https://www.instagram.com/thenextgenworld/",
-      },
-    ],
+      "Alongside my full-time role, I take on freelance work for clients — building websites and products end-to-end, from requirements and design through development, deployment, and ongoing support.",
+    links: [],
   },
 ];
 
@@ -288,40 +279,34 @@ export const moreProjects: ArchiveProject[] = [
    with these exact filenames to replace the generated placeholders */
 export const highlights = [
   {
-    title: "1st Runner-up — Puzzle Parade",
-    detail: "Coding + aptitude competition · Darshan University",
-    year: "2023",
-    image: "/images/highlights/puzzle-parade.jpg",
+    title: "2nd Runner-up — ConversionTech Hackathon",
+    detail: "Hackathon · ConversionTech",
+    year: "2024",
+    image: "/images/highlights/conversiontech-hackathon.jpg",
   },
   {
     title: "Co-founded The NextGen World",
     detail: "AI & skills development startup · Rajkot",
     year: "2025",
-    image: "/images/highlights/nextgen-world.jpg",
+    image: "/images/highlights/nextgen-team.jpg",
   },
   {
     title: "Teaching Assistant",
     detail: "Mentored students in web development · Darshan University",
-    year: "2023 — 2025",
-    image: "/images/highlights/teaching.jpg",
-  },
-  {
-    title: "3rd Runner-up — Web Artisan",
-    detail: "Web development competition · Frolic",
-    year: "2023",
-    image: "/images/highlights/web-artisan.jpg",
+    year: "2023 — 2026",
+    image: "/images/highlights/teaching-assistants.jpg",
   },
   {
     title: "Hackathon Runs",
     detail: "DAIICT · MSU · Darshan University",
     year: "2022 — 2024",
-    image: "/images/highlights/hackathons.jpg",
+    image: "/images/highlights/hackathon-runs.jpg",
   },
   {
     title: "Google Cloud Event",
     detail: "Cloud computing skills program",
     year: "2024",
-    image: "/images/highlights/google-cloud.jpg",
+    image: "/images/highlights/google-summit.jpg",
   },
 ];
 
