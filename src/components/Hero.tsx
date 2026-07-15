@@ -79,7 +79,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* right — primary CTA */}
+          {/* right — Download CV */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,10 +87,11 @@ export default function Hero() {
             className="order-3 max-md:mx-auto md:justify-self-end"
           >
             <a
-              href="#contact"
+              href={siteConfig.resume}
+              download="yash-chauhan-resume.pdf"
               className="grad-pill inline-block rounded-full px-9 py-4 text-[11px] font-bold uppercase tracking-[0.22em] text-white"
             >
-              Contact me
+              Download CV
             </a>
           </motion.div>
         </div>
