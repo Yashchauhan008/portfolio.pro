@@ -22,6 +22,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
+      id="home"
       className="relative flex min-h-svh flex-col justify-center overflow-hidden px-6 pt-28 md:px-10 md:pt-32"
     >
       <motion.div style={{ y, opacity }}>

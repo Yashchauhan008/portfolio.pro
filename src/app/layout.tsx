@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Geist } from "next/font/google";
 import { siteConfig } from "@/lib/data";
+import QuickMenu from "@/components/QuickMenu";
 import "./globals.css";
 
 const geist = Geist({
@@ -114,6 +115,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <QuickMenu />
       </body>
     </html>
   );
