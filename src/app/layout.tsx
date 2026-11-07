@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Geist } from "next/font/google";
 import { siteConfig } from "@/lib/data";
 import QuickMenu from "@/components/QuickMenu";
+import CrewOverlay from "@/components/Crew";
 import "./globals.css";
 
 const geist = Geist({
@@ -116,6 +117,7 @@ export default function RootLayout({
         />
         {children}
         <QuickMenu />
+        <CrewOverlay />
       </body>
     </html>
   );

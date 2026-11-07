@@ -220,6 +220,7 @@ export default function QuickMenu() {
       <div className="pointer-events-none fixed bottom-6 right-6 md:bottom-8 md:right-8">
         <motion.button
           ref={bellRef}
+          data-crew-home
           type="button"
           aria-label={open ? "Close guide" : "Open guide — ring the bell"}
           aria-expanded={open}

@@ -44,6 +44,23 @@ body {
   color: #0a0a0a;
 }
 
+/* Elements stay blank until the cursor swarm has built them */
+[data-crew="hidden"] {
+  clip-path: inset(0 100% 100% 0);
+}
+
+/* Swarm cursor: only the shape for the current tool is shown */
+.crew-cur .tool {
+  display: none;
+}
+.crew-cur[data-tool="arrow"] .t-arrow,
+.crew-cur[data-tool="cross"] .t-cross,
+.crew-cur[data-tool="ibeam"] .t-ibeam,
+.crew-cur[data-tool="pen"] .t-pen,
+.crew-cur[data-tool="dup"] .t-dup {
+  display: block;
+}
+
 /* Big condensed display type — the "HI, I'M ALEX" look */
 .display {
   font-family: var(--font-anton), Impact, sans-serif;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useCrewReveal } from "./Crew";
 import {
   motion,
   useInView,
@@ -23,9 +24,30 @@ export function ScrollProgress() {
   );
 }
 
-/** Slides children up from behind an overflow mask.
- * The observer sits on the (unclipped) mask — a translated child inside
- * overflow-hidden never intersects, so it must not carry whileInView itself. */
+/* Reveals are performed by the swarm (see Crew.tsx). `data-crew="hidden"`
+ * keeps an element blank (see globals.css) until cursors have built it. */
+
+/** Any block, built by the swarm. `trigger="mount"` starts after `delay` s. */
+export function Collab({
+  children,
+  delay = 0,
+  className = "",
+  trigger = "view",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+  trigger?: "view" | "mount";
+}) {
+  const ref = useCrewReveal<HTMLDivElement>(delay, trigger);
+  return (
+    <div ref={ref} data-crew="hidden" className={className}>
+      {children}
+    </div>
+  );
+}
+
+/** Heading / line of text — typed out by the swarm. */
 export function Reveal({
   children,
   delay = 0,
@@ -35,26 +57,11 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
+  const ref = useCrewReveal<HTMLSpanElement>(delay);
   return (
-    <motion.span
-      className={`block overflow-hidden ${className}`}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-10% 0px" }}
-    >
-      <motion.span
-        className="block"
-        variants={{
-          hidden: { y: "110%" },
-          visible: {
-            y: "0%",
-            transition: { duration: 0.9, ease: EASE, delay },
-          },
-        }}
-      >
-        {children}
-      </motion.span>
-    </motion.span>
+    <span ref={ref} data-crew="hidden" className={`block ${className}`}>
+      {children}
+    </span>
   );
 }
 
@@ -68,15 +75,9 @@ export function FadeUp({
   className?: string;
 }) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.8, ease: EASE, delay }}
-    >
+    <Collab delay={delay} className={className}>
       {children}
-    </motion.div>
+    </Collab>
   );
 }
 
@@ -160,15 +161,14 @@ export function CountUp({
   );
 }
 
-/** Hairline that draws itself across when in view. */
+/** Hairline — drawn by a pen-tool cursor. */
 export function LineGrow({ className = "" }: { className?: string }) {
+  const ref = useCrewReveal<HTMLDivElement>(0);
   return (
-    <motion.div
-      className={`h-px w-full origin-left bg-line ${className}`}
-      initial={{ scaleX: 0 }}
-      whileInView={{ scaleX: 1 }}
-      viewport={{ once: true, margin: "-5% 0px" }}
-      transition={{ duration: 1.1, ease: EASE }}
+    <div
+      ref={ref}
+      data-crew="hidden"
+      className={`h-px w-full bg-line ${className}`}
     />
   );
 }
