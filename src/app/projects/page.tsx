@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <SmoothScroll>
+    <SmoothScroll startAtTop>
       <ScrollProgress />
       <Nav />
       <ProjectArchive />

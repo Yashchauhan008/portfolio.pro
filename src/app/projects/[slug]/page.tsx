@@ -42,7 +42,7 @@ export default async function Page({
   if (!study) notFound();
 
   return (
-    <SmoothScroll>
+    <SmoothScroll startAtTop>
       <ScrollProgress />
       <Nav />
       <CaseStudyPage study={study} />
